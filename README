@@ -1,0 +1,47 @@
+= bistip
+
+Get tip for your trip! A full-stack Bistip.com API wrapper in Ruby.
+
+== Instalation
+
+  gem install bistip
+
+== Features:
+
+* Easy to fetch data from bistip API with searching trips and searching wanted post function, that specified by some parameter, like <b>:from</b> and <b>:to</b>, optional parameter like <b>:page</b> and <b>:per_page</b> to control pagination
+* (Optional) You can control result number with pagination using <b>:page</b> and <b>:per_page</b> properties. By default :page value is 1 and :per_page value is 10
+
+
+== Examples
+
+Now bistip ruby gem supports all objects listed here: http://www.bistip.com/api
+
+=== GET
+==== Searching for trips or wanted_post
+
+  # trips from jakarta to osaka
+  Bistip::trips({ :from => 'jakarta', :to => 'Osaka'})
+  
+  # trips from yogyakarta
+  Bistip::trips({ :from => 'yogyakarta' })
+
+  # wanted post from jakarta with pagination (optional, default
+  Bistip::seeks({ :from => 'jakarta', :page => 1, :per_page => 20})
+
+
+Every method will generate array of hash where the array element would have structure like :
+
+    trip: {
+      origin_location: "city, country",
+      notes: "lorem ipsum dolor sit amet",
+      period: null,
+      username: "foo",
+      arrival_date_medium_format: "2011-10-10",
+      departure_date_medium_format: "2011-10-09",
+      id: 742,
+      day: null,
+      routine: false,
+      destination_location: "Jakarta, Indonesia"
+    }
+
+And will generate an empty array if no trips/seeks found in bistip specified by parameter
