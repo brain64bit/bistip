@@ -1,0 +1,3 @@
+module Bistip
+  # Your code goes here...
+end
